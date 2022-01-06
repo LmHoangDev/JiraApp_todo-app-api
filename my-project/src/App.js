@@ -2,6 +2,7 @@ import "./App.css";
 import TodoListCC from "./components/TodoListCC/TodoListCC";
 import TodoListFC from "./components/TodoListFC/TodoListFC";
 import TodolistRedux from "./components/TodoListFC/TodoListRedux";
+import TodolistSaga from "./components/TodoListSaga/TodoListSaga";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
 
       {/* <TodoListCC /> */}
       {/* <TodoListFC /> */}
-      <TodolistRedux />
+      {/* <TodolistRedux /> */}
+      <TodolistSaga />
     </div>
   );
 }
