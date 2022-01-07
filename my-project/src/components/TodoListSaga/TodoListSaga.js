@@ -36,7 +36,11 @@ export default function TodolistSaga(props) {
     });
   };
 
-  const getTaskList = () => {};
+  const getTaskList = () => {
+    dispatch({
+      type: "getTaskApiAction",
+    });
+  };
 
   const addTask = (e) => {};
 

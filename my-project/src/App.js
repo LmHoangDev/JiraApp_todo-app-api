@@ -1,4 +1,5 @@
 import "./App.css";
+import Loading from "./components/GlobalSetting/LoadingComponent/Loading";
 import TodoListCC from "./components/TodoListCC/TodoListCC";
 import TodoListFC from "./components/TodoListFC/TodoListFC";
 import TodolistRedux from "./components/TodoListFC/TodoListRedux";
@@ -16,6 +17,7 @@ function App() {
       {/* <TodoListCC /> */}
       {/* <TodoListFC /> */}
       {/* <TodolistRedux /> */}
+      <Loading />
       <TodolistSaga />
     </div>
   );
