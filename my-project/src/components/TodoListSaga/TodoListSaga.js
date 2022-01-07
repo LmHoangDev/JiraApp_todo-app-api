@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  ADD_TASK_API,
+  CHECK_TASK_API,
+  DEL_TASK_API,
+  GET_TASKLIST_API,
+  REJECT_TASK_API,
+} from "../../redux/constants/ToDoConst";
 import "./todolistsaga.css";
 export default function TodolistSaga(props) {
   let [state, setState] = useState({
@@ -38,11 +45,17 @@ export default function TodolistSaga(props) {
 
   const getTaskList = () => {
     dispatch({
-      type: "getTaskApiAction",
+      type: GET_TASKLIST_API,
     });
   };
 
-  const addTask = (e) => {};
+  const addTask = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: ADD_TASK_API,
+      taskName: state.values.taskName,
+    });
+  };
 
   useEffect(() => {
     getTaskList();
@@ -51,13 +64,29 @@ export default function TodolistSaga(props) {
   }, []);
 
   //Xử lý reject task
-  const rejectTask = (taskName) => {};
+  const rejectTask = (taskName) => {
+    dispatch({
+      type: REJECT_TASK_API,
+      taskName,
+    });
+  };
 
   //Xử lý done task
-  const checkTask = (taskName) => {};
+  const checkTask = (taskName) => {
+    console.log(taskName);
+    dispatch({
+      type: CHECK_TASK_API,
+      taskName,
+    });
+  };
 
   //Hàm xử lý xóa task
-  const delTask = (taskName) => {};
+  const delTask = (taskName) => {
+    dispatch({
+      type: DEL_TASK_API,
+      taskName: taskName,
+    });
+  };
 
   const renderTaskToDo = () => {
     return taskList
@@ -159,6 +188,7 @@ export default function TodolistSaga(props) {
               <i className="fa fa-plus" />
             </button>
           </div>
+          <span className="text-danger">{state.errors.taskName}</span>
           <div className="card__todo">
             {/* Uncompleted tasks */}
             <ul className="todo" id="todo">

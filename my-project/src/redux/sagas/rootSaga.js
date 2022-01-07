@@ -7,5 +7,11 @@
 import { all } from "redux-saga/effects";
 import * as TodolistSaga from "./TodolistSaga";
 export function* rootSaga() {
-  yield all([TodolistSaga.theoDoiActionSaga()]);
+  yield all([
+    TodolistSaga.theoDoiActionSaga(),
+    TodolistSaga.theoDoiActionAddTask(),
+    TodolistSaga.theoDoiActionDelTask(),
+    TodolistSaga.theoDoiActionRejectTask(),
+    TodolistSaga.theoDoiActionCheckTask(),
+  ]);
 }
