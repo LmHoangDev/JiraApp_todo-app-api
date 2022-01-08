@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import TodoListSaga from "./components/TodoListSaga/TodoListSaga";
 import "./App.css";
 import LoginWithFormMik from "./pages/Cyberbugs/LoginCyberbugs/LoginCyberbugs";
@@ -12,12 +12,7 @@ function App() {
   const dispatch = useDispatch();
   console.log(history);
   useEffect(() => {
-    setTimeout(() => {
-      dispatch({ type: "ADD_HISTORY", history: history });
-    }, 1000);
-    return () => {
-      clearTimeout();
-    };
+    dispatch({ type: "ADD_HISTORY", history });
   }, []);
 
   return (
@@ -28,6 +23,7 @@ function App() {
         <Route path="/todo" exact element={<TodoListSaga />} />
         <Route path="/login" exact element={<LoginWithFormMik />} />
         <Route path="/home" exact element={<Home />} />
+        <Route path="/home" element={<Navigate to="/home" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
