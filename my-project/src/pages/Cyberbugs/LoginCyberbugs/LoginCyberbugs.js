@@ -4,25 +4,24 @@ import { UserOutlined, KeyOutlined } from "@ant-design/icons";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
+import "./LoginCyberbugs.css";
+import { signInCyberBugAction } from "../../../redux/actions/CyberBugAction";
 function LoginCyberbugs(props) {
   const { values, touched, errors, handleChange, handleSubmit } = props;
   console.log(props);
   return (
     <>
-      <div
-        className="container-fluid"
-        style={{ minHeight: window.innerHeight }}
-      >
-        <div className="row" style={{ minHeight: window.innerHeight }}>
-          <div
-            className="col-md-9"
-            style={{
-              backgroundImage: "url('https://picsum.photos/id/232/200/300')",
-            }}
-          ></div>
-          <form className="col-md-3 text-center" onSubmit={handleSubmit}>
-            <div className="p-2">
-              <h3 className="text-center mt-md-5 text-danger">Login JiraApp</h3>
+      <div className="container-fluid" style={{ minHeight: 800 }}>
+        <div className="row" style={{ minHeight: 800 }}>
+          <div className="col-xl-9 col-lg-6 col-sm-6 col-12 bg-login"></div>
+          <form
+            className="col-xl-3 col-lg-6 col-sm-6 col-12 text-center"
+            onSubmit={handleSubmit}
+          >
+            <div className="mt-2">
+              <h4 className="text-center mt-md-5 text-danger text-uppercase">
+                Login Jira
+              </h4>
               <div className="form-group">
                 <Input
                   size="large"
@@ -82,11 +81,13 @@ const LoginWithFormMik = withFormik({
       .max(32, "Maximum 32 characters"),
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log(values);
+  handleSubmit: ({ email, password }, { props, setSubmitting }) => {
+    console.log(email, password);
+    console.log(props);
+    props.dispatch(signInCyberBugAction(email, password));
   },
 
   displayName: "BasicForm",
 })(LoginCyberbugs);
 
-export default LoginWithFormMik;
+export default connect()(LoginWithFormMik);

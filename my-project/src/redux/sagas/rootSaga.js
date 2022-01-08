@@ -5,13 +5,15 @@
 */
 
 import { all } from "redux-saga/effects";
-import * as TodolistSaga from "./TodolistSaga";
+import * as TodoListSaga from "./TodoListSaga";
+import * as Cyberbug from "./Cyberbugs/UserCyberbugSaga";
 export function* rootSaga() {
   yield all([
-    TodolistSaga.theoDoiActionSaga(),
-    TodolistSaga.theoDoiActionAddTask(),
-    TodolistSaga.theoDoiActionDelTask(),
-    TodolistSaga.theoDoiActionRejectTask(),
-    TodolistSaga.theoDoiActionCheckTask(),
+    TodoListSaga.theoDoiActionSaga(),
+    TodoListSaga.theoDoiActionAddTask(),
+    TodoListSaga.theoDoiActionDelTask(),
+    TodoListSaga.theoDoiActionRejectTask(),
+    TodoListSaga.theoDoiActionCheckTask(),
+    Cyberbug.theoDoiSignin(),
   ]);
 }

@@ -1,28 +1,19 @@
-// import { Route, Routes } from "react-router-dom";
-// import Header from "./components/Header/Header";
-// import TodolistSaga from "./components/TodoListSaga/TodoListSaga";
+import { Route, Routes } from "react-router-dom";
+import TodoListSaga from "./components/TodoListSaga/TodoListSaga";
+import "./App.css";
 import LoginWithFormMik from "./pages/Cyberbugs/LoginCyberbugs/LoginCyberbugs";
-
+import NotFound from "./components/NotFound/NotFound";
+import Loading from "./components/GlobalSetting/LoadingComponent/Loading";
 function App() {
   return (
     <>
-      {/* <Header />
+      <Loading />
       <Routes>
-        <Route path="/" element={<TodoListFC />} />
-        <Route path="/todocc" element={<TodoListCC />} />
-      </Routes> */}
-
-      {/* <TodoListCC /> */}
-      {/* <TodoListFC /> */}
-      {/* <TodolistRedux /> */}
-      {/* <Loading />
-      <TodolistSaga /> */}
-      {/* <Header />
-      <Routes>
-        <Route path="/" element={<TodolistSaga />} />
-        <Route path="/login" element={<LoginWithFormMik />} />
-      </Routes> */}
-      <LoginWithFormMik />
+        <Route path="/" exact element={<LoginWithFormMik />} />
+        <Route path="/todo" exact element={<TodoListSaga />} />
+        <Route path="/login" exact element={<LoginWithFormMik />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
