@@ -1,13 +1,11 @@
-import "./App.css";
-import Loading from "./components/GlobalSetting/LoadingComponent/Loading";
-import TodoListCC from "./components/TodoListCC/TodoListCC";
-import TodoListFC from "./components/TodoListFC/TodoListFC";
-import TodolistRedux from "./components/TodoListFC/TodoListRedux";
-import TodolistSaga from "./components/TodoListSaga/TodoListSaga";
+// import { Route, Routes } from "react-router-dom";
+// import Header from "./components/Header/Header";
+// import TodolistSaga from "./components/TodoListSaga/TodoListSaga";
+import LoginWithFormMik from "./pages/Cyberbugs/LoginCyberbugs/LoginCyberbugs";
 
 function App() {
   return (
-    <div>
+    <>
       {/* <Header />
       <Routes>
         <Route path="/" element={<TodoListFC />} />
@@ -17,9 +15,15 @@ function App() {
       {/* <TodoListCC /> */}
       {/* <TodoListFC /> */}
       {/* <TodolistRedux /> */}
-      <Loading />
-      <TodolistSaga />
-    </div>
+      {/* <Loading />
+      <TodolistSaga /> */}
+      {/* <Header />
+      <Routes>
+        <Route path="/" element={<TodolistSaga />} />
+        <Route path="/login" element={<LoginWithFormMik />} />
+      </Routes> */}
+      <LoginWithFormMik />
+    </>
   );
 }
 
