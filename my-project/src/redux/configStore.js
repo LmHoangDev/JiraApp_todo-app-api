@@ -4,13 +4,14 @@ import reduxThunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./sagas/rootSaga";
 import LoadingReducer from "./reducers/LoadingReducer";
-
+import { UserLoginCyberBugsReducer } from "./reducers/UserCyberBugsReducer";
 const middleWareSaga = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   //reducer khai báo tại đây
   ToDoListReducer,
   LoadingReducer,
+  UserLoginCyberBugsReducer,
 });
 
 const store = createStore(

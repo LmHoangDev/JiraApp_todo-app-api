@@ -1,7 +1,8 @@
 import { call, delay, put, takeLatest } from "redux-saga/effects";
 import { cyberbugsService } from "../../../services/CyberbugService";
 import { TOKEN, USER_LOGIN } from "../../../util/constants/settingSystem";
-import { USER_SIGNIN_API } from "../../constants/Cyberbugs/Cyberbugs";
+import { history } from "../../../util/history";
+import { USER_SIGNIN_API, USLOGIN } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 
 //Quản lý các action saga
@@ -24,6 +25,14 @@ function* signInSaga(action) {
     localStorage.setItem(USER_LOGIN, JSON.stringify(data.content));
 
     console.log(data);
+    yield put({
+      type: USLOGIN,
+      userLogin: data.content,
+    });
+
+    // let history = yield select(state=> state.HistoryReducer.history)
+
+    history.push("/home");
   } catch (err) {
     console.log(err.response.data);
   }
