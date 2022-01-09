@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -8,14 +8,14 @@ export default function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/login">
+              <NavLink className="nav-link" to="/login">
                 Login
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/todo">
+              <NavLink className="nav-link" to="/todo">
                 Todo Tasks
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -30,12 +30,12 @@ export default function Header() {
                 Tasks
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/todo">
+                <NavLink className="dropdown-item" to="/todo">
                   Todo Tasks
-                </Link>
-                <Link className="dropdown-item" to="/login">
+                </NavLink>
+                <NavLink className="dropdown-item" to="/login">
                   Login
-                </Link>
+                </NavLink>
               </div>
             </li>
           </ul>

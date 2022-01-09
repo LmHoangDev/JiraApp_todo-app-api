@@ -4,8 +4,8 @@ export const signInCyberBugAction = (email, password) => {
   return {
     type: USER_SIGNIN_API,
     userLogin: {
-      email: email,
-      password: password,
+      email,
+      password,
     },
   };
 };
