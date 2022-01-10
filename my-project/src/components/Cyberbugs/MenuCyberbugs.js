@@ -10,11 +10,12 @@ export default function MenuCyberbugs() {
         </div>
         <div className="account-info ml-2">
           <NavLink
-            to="/"
+            to="https://github.com/LmHoangDev/todo-app-api"
             className="text-dark"
             activeClassName="font-weight-bold"
+            target="_blank"
           >
-            CyberLearn.vn
+            LM SHOP
           </NavLink>
           <br />
           <NavLink

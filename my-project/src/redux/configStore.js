@@ -5,6 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./sagas/rootSaga";
 import LoadingReducer from "./reducers/LoadingReducer";
 import { UserLoginCyberBugsReducer } from "./reducers/UserCyberBugsReducer";
+import { ProjectCategoryReducer } from "./reducers/ProjectCategoryReducer";
 const middleWareSaga = createSagaMiddleware();
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   ToDoListReducer,
   LoadingReducer,
   UserLoginCyberBugsReducer,
+  ProjectCategoryReducer,
 });
 
 const store = createStore(

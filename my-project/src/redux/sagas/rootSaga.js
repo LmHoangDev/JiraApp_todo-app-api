@@ -7,6 +7,8 @@
 import { all } from "redux-saga/effects";
 import * as TodoListSaga from "./TodoListSaga";
 import * as Cyberbug from "./Cyberbugs/UserCyberbugSaga";
+import * as ProJectCategory from "./Cyberbugs/ProjectCategorySaga";
+import * as ProjectSaga from "./Cyberbugs/ProjectSaga";
 export function* rootSaga() {
   yield all([
     TodoListSaga.theoDoiActionSaga(),
@@ -15,5 +17,7 @@ export function* rootSaga() {
     TodoListSaga.theoDoiActionRejectTask(),
     TodoListSaga.theoDoiActionCheckTask(),
     Cyberbug.theoDoiSignin(),
+    ProJectCategory.theoDoigetAllProjectCategory(),
+    ProjectSaga.theoDoiCreateProjectSaga(),
   ]);
 }

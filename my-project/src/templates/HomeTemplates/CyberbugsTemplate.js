@@ -14,8 +14,8 @@ export const CyberbugTemplate = (props) => {
         return (
           <>
             <div className="jira">
-              <div className="container-fluid pl-0">
-                <div className="row">
+              <div className="container-fluid pl-0 h-100">
+                <div className="row h-100">
                   <div className="col-xl-1 col-md-3 col-12 p-0">
                     <SidebarCyberbugs />
                   </div>
