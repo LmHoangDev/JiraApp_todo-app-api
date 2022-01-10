@@ -2,130 +2,52 @@
     height: 100vh;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
-    display: flex;
 }
 
 
 /* Sider Bar */
 
 .sideBar {
-    position: fixed;
-    height: 100vh;
+    height: 100%;
     z-index: 10;
-    background-color: #065fd4;
-    width: 4%;
+    background-color: #3c87e9;
     transition: 0.2s;
-}
-
-.sideBar:hover {
-    width: 15%;
-}
-
-.sideBar:hover .sideBar-top .sideBar-icon:first-child {
-    padding: 0 40%;
-}
-
-.sideBar:hover .sideBar-top .sideBar-icon:not(:first-child) {
-    padding: 0;
-    padding-left: 5%;
-}
-
-.sideBar:hover .sideBar-top .sideBar-icon:not(:first-child) .title {
-    opacity: 1;
     color: white;
     font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.sideBar:hover .sideBar-top .sideBar-icon:not(:first-child) .svg-inline--fa {
-    margin-right: 10px;
+.sideBar-icon {
+    padding: 50px 0;
 }
 
-.sideBar:hover .sideBar-bottom {
-    left: 0%;
-    width: 100%;
-}
-
-.sideBar:hover .sideBar-bottom .svg-inline--fa {
-    margin-right: 10px;
-}
-
-.sideBar:hover .sideBar-bottom .title {
-    opacity: 1;
-    color: white;
-    font-weight: 500;
-}
-
-.sideBar .sideBar-icon {
-    margin-bottom: 20%;
-}
-
-.sideBar .sideBar-icon .svg-inline--fa {
-    color: white;
-}
-
-.sideBar .sideBar-icon .title {
-    opacity: 0;
-}
-
-.sideBar .sideBar-top .sideBar-icon:first-child {
-    padding-top: 20%;
-    font-size: 25px;
-}
-
-.sideBar .sideBar-bottom {
-    position: absolute;
-    bottom: 3%;
-    left: 8%;
-}
-
-.sideBar .sideBar-icon {
-    padding: 0 18%;
-}
-
-.sideBar .sideBar-icon:not(:first-child) {
-    padding: 0 30%;
-    height: 30px;
+.sideBar-icon span {
+    margin-left: 5px;
 }
 
 
 /* Menu */
 
 .menu {
-    height: 100vh;
-    width: 18%;
-    margin-left: 4%;
+    height: 100%;
     background-color: #f4f5f7;
 }
 
 .menu .account {
     display: flex;
-    padding: 5% 17%;
-    margin-bottom: 5%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
 }
 
-.menu .account .avatar {
-    padding-top: 13%;
-    margin-right: 10px;
-}
+.menu .account .avatar {}
 
 .avatar img {
     width: 50px;
-}
-
-.menu .account .account-info {
-    padding-top: 12%;
-    padding-bottom: 5%;
-    text-align: left;
-}
-
-.menu .account .account-info p:first-child {
-    margin-bottom: 3px;
-    font-weight: 500;
-}
-
-.menu .account .account-info p:last-child {
-    margin-top: 0px;
-    font-weight: 300;
 }
 
 .menu .control {
@@ -206,7 +128,7 @@
 .main .info .search-block .fa-search {
     position: absolute;
     left: 5%;
-    top: 15%;
+    top: 20%;
     color: #67748b;
 }
 
@@ -407,6 +329,7 @@
     height: 35px;
     background: #dcdfe4;
     margin-bottom: 20px;
+    font-size: 10px;
 }
 
 .item {
@@ -471,4 +394,9 @@
 .logged,
 .estimate-time {
     font-size: 14px;
+}
+
+.control div span,
+.feature div span {
+    margin-left: 10px;
 }

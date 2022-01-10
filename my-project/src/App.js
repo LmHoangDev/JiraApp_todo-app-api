@@ -26,7 +26,7 @@ function App() {
       <Loading />
       <Switch>
         <HomeTemplate path="/home" exact Component={Home} />
-        <UserLoginTemplate path="/" exact Component={LoginWithFormMik} />
+        <CyberbugTemplate path="/" exact Component={indexCyberbug} />
         <UserLoginTemplate path="/login" exact Component={LoginWithFormMik} />
         <CyberbugTemplate path="/cyberbug" exact Component={indexCyberbug} />
         <CyberbugTemplate

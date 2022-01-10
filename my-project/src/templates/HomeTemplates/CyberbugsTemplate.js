@@ -13,11 +13,21 @@ export const CyberbugTemplate = (props) => {
       render={(propsRoute) => {
         return (
           <>
-            <div class="jira">
-              <SidebarCyberbugs />
-              <MenuCyberbugs />
-              <Component {...propsRoute} />
-              <ModalCyberBugs />
+            <div className="jira">
+              <div className="container-fluid pl-0">
+                <div className="row">
+                  <div className="col-xl-1 col-md-3 col-12 p-0">
+                    <SidebarCyberbugs />
+                  </div>
+                  <div className="col-xl-2 pl-0 col-md-3 col-12">
+                    <MenuCyberbugs />
+                  </div>
+                  <div className="col-xl-9 pl-0 col-md-6 col-12">
+                    <Component {...propsRoute} />
+                    <ModalCyberBugs />
+                  </div>
+                </div>
+              </div>
             </div>
           </>
         );

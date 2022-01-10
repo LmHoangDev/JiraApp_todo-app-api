@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function MenuCyberbugs() {
   return (
@@ -7,19 +8,36 @@ export default function MenuCyberbugs() {
         <div className="avatar">
           <img src={require("../../assets/img/download.jfif")} alt="" />
         </div>
-        <div className="account-info">
-          <p>CyberLearn.vn</p>
-          <p>Report bugs</p>
+        <div className="account-info ml-2">
+          <NavLink
+            to="/"
+            className="text-dark"
+            activeClassName="font-weight-bold"
+          >
+            CyberLearn.vn
+          </NavLink>
+          <br />
+          <NavLink
+            to="/"
+            className="text-dark"
+            activeClassName="font-weight-bold"
+          >
+            Report bugs
+          </NavLink>
         </div>
       </div>
       <div className="control">
         <div>
-          <i className="fa fa-credit-card" />
-          <span>Cyber Board</span>
+          <NavLink to="cyberbug" activeClassName="font-weight-bold">
+            <i className="fa fa-credit-card" />
+            <span>Cyber Board</span>
+          </NavLink>
         </div>
         <div>
-          <i className="fa fa-cog" />
-          <span>Project Settings</span>
+          <NavLink to="create-project" activeClassName="font-weight-bold">
+            <i className="fa fa-cog" />
+            <span>Create Project</span>
+          </NavLink>
         </div>
       </div>
       <div className="feature">
