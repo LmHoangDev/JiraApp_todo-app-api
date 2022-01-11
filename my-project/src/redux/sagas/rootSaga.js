@@ -9,6 +9,7 @@ import * as TodoListSaga from "./TodoListSaga";
 import * as Cyberbug from "./Cyberbugs/UserCyberbugSaga";
 import * as ProJectCategory from "./Cyberbugs/ProjectCategorySaga";
 import * as ProjectSaga from "./Cyberbugs/ProjectSaga";
+import * as ProjectManageSaga from "./Cyberbugs/ProjectManageSaga";
 export function* rootSaga() {
   yield all([
     TodoListSaga.theoDoiActionSaga(),
@@ -19,5 +20,6 @@ export function* rootSaga() {
     Cyberbug.theoDoiSignin(),
     ProJectCategory.theoDoigetAllProjectCategory(),
     ProjectSaga.theoDoiCreateProjectSaga(),
+    ProjectManageSaga.theoDoiGetAllProject(),
   ]);
 }

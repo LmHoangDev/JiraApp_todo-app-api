@@ -6,6 +6,7 @@ import { rootSaga } from "./sagas/rootSaga";
 import LoadingReducer from "./reducers/LoadingReducer";
 import { UserLoginCyberBugsReducer } from "./reducers/UserCyberBugsReducer";
 import { ProjectCategoryReducer } from "./reducers/ProjectCategoryReducer";
+import { ProjectManageReducer } from "./reducers/ProjectManageReducer";
 const middleWareSaga = createSagaMiddleware();
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   LoadingReducer,
   UserLoginCyberBugsReducer,
   ProjectCategoryReducer,
+  ProjectManageReducer,
 });
 
 const store = createStore(

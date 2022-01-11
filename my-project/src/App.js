@@ -7,6 +7,7 @@ import NotFound from "./components/NotFound/NotFound";
 import TodoListSaga from "./components/TodoListSaga/TodoListSaga";
 import CreateProject from "./pages/Cyberbugs/CreateProject/CreateProject";
 import LoginWithFormMik from "./pages/Cyberbugs/LoginCyberbugs/LoginCyberbugs";
+import ProjectManagement from "./pages/Cyberbugs/ProjectManagement/ProjectManagement";
 import Home from "./pages/Home/Home";
 import indexCyberbug from "./redux/sagas/Cyberbugs/indexCyberbug";
 import { CyberbugTemplate } from "./templates/HomeTemplates/CyberbugsTemplate";
@@ -32,6 +33,11 @@ function App() {
           exact
           path="/create-project"
           Component={CreateProject}
+        />
+        <CyberbugTemplate
+          path="/projectmanage"
+          exact
+          Component={ProjectManagement}
         />
         <Route path="/todo" exact component={TodoListSaga} />
         <Route path="*" component={NotFound} />

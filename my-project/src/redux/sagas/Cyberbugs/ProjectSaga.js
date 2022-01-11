@@ -1,6 +1,7 @@
 import { call, delay, put, takeLatest } from "redux-saga/effects";
 import { cyberbugsService } from "../../../services/CyberbugService";
 import { STATUS_CODE } from "../../../util/constants/settingSystem";
+import { history } from "../../../util/history";
 import { CREATE_PROJECT_SAGA } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 
@@ -17,6 +18,7 @@ function* createProjectSaga(action) {
     });
     if (status === STATUS_CODE.SUCCESS) {
       console.log(data);
+      history.push("/projectmanage");
     }
   } catch (error) {
     console.log(error);

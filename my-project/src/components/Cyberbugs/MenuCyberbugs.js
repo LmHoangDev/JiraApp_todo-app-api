@@ -40,6 +40,16 @@ export default function MenuCyberbugs() {
             <span>Create Project</span>
           </NavLink>
         </div>
+        <div>
+          <NavLink
+            to="projectmanage"
+            activeClassName="font-weight-bold"
+            className="d-block"
+          >
+            <i class="fas fa-tasks"></i>
+            <span>Projects</span>
+          </NavLink>
+        </div>
       </div>
       <div className="feature">
         <div>
