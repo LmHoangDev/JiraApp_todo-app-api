@@ -52,11 +52,17 @@ export default function ProjectManagement() {
       title: "ID",
       dataIndex: "id",
       key: "id",
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: "Project Name",
       dataIndex: "projectName",
       key: "projectName",
+      sorter: (item1, item2) => {
+        let projectname1 = item1.projectName?.trim().toLowerCase();
+        let projectname2 = item2.projectName?.trim().toLowerCase();
+        return projectname1 > projectname2 ? 1 : -1;
+      },
     },
     // {
     //     title: 'description',
@@ -81,6 +87,11 @@ export default function ProjectManagement() {
       key: "creator",
       render: (text, record, index) => {
         return <Tag color="green">{record.creator?.name}</Tag>;
+      },
+      sorter: (item1, item2) => {
+        let creator1 = item1.creator?.name.trim().toLowerCase();
+        let creator2 = item2.creator?.name.trim().toLowerCase();
+        return creator1 > creator2 ? 1 : -1;
       },
     },
     {

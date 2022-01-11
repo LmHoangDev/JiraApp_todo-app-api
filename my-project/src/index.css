@@ -59,6 +59,10 @@
     margin-right: 7%;
 }
 
+aside.ant-layout-sider.ant-layout-sider-dark {
+    min-width: 100% !important;
+}
+
 .menu .control div {
     margin-bottom: 10px;
     padding: 2% 3%;
