@@ -5,6 +5,7 @@ import "./App.css";
 import Loading from "./components/GlobalSetting/LoadingComponent/Loading";
 import NotFound from "./components/NotFound/NotFound";
 import TodoListSaga from "./components/TodoListSaga/TodoListSaga";
+import DrawerCyberbugs from "./HOC/CyberbugsHOC/DrawerCyberbugs";
 import CreateProject from "./pages/Cyberbugs/CreateProject/CreateProject";
 import LoginWithFormMik from "./pages/Cyberbugs/LoginCyberbugs/LoginCyberbugs";
 import ProjectManagement from "./pages/Cyberbugs/ProjectManagement/ProjectManagement";
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <Loading />
+      <DrawerCyberbugs />
       <Switch>
         <HomeTemplate path="/home" exact Component={Home} />
         <CyberbugTemplate path="/" exact Component={indexCyberbug} />

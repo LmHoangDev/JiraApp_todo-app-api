@@ -3,6 +3,7 @@ import { Table, Tag, Space, Button } from "antd";
 import { FormOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_ALL_PROJECT_MANAGE } from "../../../redux/constants/Cyberbugs/Cyberbugs";
+import FormEditProject from "../../../components/Forms/FormEditProject/FormEditProject";
 
 export default function ProjectManagement() {
   //Lấy dữ liệu từ reducer về component
@@ -101,7 +102,18 @@ export default function ProjectManagement() {
       render: (text, record, index) => {
         return (
           <div>
-            <button className="btn mr-2 btn-primary">
+            <button
+              className="btn mr-2 btn-primary"
+              onClick={() => {
+                const action = {
+                  type: "OPEN_FORM_EDIT_PROJECT",
+                  Component: <FormEditProject />,
+                };
+
+                //dispatch lên reducer nội dung drawer
+                dispatch(action);
+              }}
+            >
               <FormOutlined style={{ fontSize: 17 }} />
             </button>
             <button className="btn btn-danger">
