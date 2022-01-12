@@ -112,6 +112,13 @@ export default function ProjectManagement() {
 
                 //dispatch lên reducer nội dung drawer
                 dispatch(action);
+
+                //dispatch dữ liệu dòng hiện tai lên reducer
+                const actionEditProject = {
+                  type: "EDIT_PROJECT",
+                  projectEditModel: record,
+                };
+                dispatch(actionEditProject);
               }}
             >
               <FormOutlined style={{ fontSize: 17 }} />

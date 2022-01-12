@@ -1,10 +1,10 @@
+import { Editor } from "@tinymce/tinymce-react";
 import { Button, Input, Select } from "antd";
 import { Option } from "antd/lib/mentions";
-import React, { useEffect } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { withFormik } from "formik";
+import React, { useEffect } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import { connect, useSelector, useDispatch } from "react-redux";
 import { CREATE_PROJECT_SAGA } from "../../../redux/constants/Cyberbugs/Cyberbugs";
 function CreateProject(props) {
   const dispatch = useDispatch();
@@ -47,7 +47,8 @@ function CreateProject(props) {
           <p>Description</p>
           <Editor
             name="description"
-            initialValue=""
+            initialValue={values.description}
+            value={values.description}
             init={{
               height: 300,
               menubar: false,
