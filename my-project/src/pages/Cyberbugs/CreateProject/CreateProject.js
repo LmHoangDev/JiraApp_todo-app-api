@@ -65,15 +65,20 @@ function CreateProject(props) {
           />
         </div>
         <div className="form-group">
-          <Select name="categoryId" className="w-100" onChange={handleChange}>
-            {arrProjectCategory.map((item, index) => {
+          <select
+            name="categoryId"
+            onChange={handleChange}
+            className="form-control"
+            style={{ fontSize: "14px", padding: "0 15px" }}
+          >
+            {arrProjectCategory?.map((item, index) => {
               return (
-                <Option value={item.id} key={index}>
+                <option key={index} value={item.id}>
                   {item.projectCategoryName}
-                </Option>
+                </option>
               );
             })}
-          </Select>
+          </select>
         </div>
         <div className="form-group">
           <Button

@@ -21,5 +21,6 @@ export function* rootSaga() {
     ProJectCategory.theoDoigetAllProjectCategory(),
     ProjectSaga.theoDoiCreateProjectSaga(),
     ProjectManageSaga.theoDoiGetAllProject(),
+    ProjectManageSaga.theoDoiUpdateProject(),
   ]);
 }

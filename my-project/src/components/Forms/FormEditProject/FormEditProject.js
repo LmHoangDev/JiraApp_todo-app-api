@@ -62,20 +62,21 @@ function FormEditProject(props) {
             <label htmlFor="projectCategory" className="font-weight-bold">
               Project Category
             </label>
-            <Select
+            <select
               name="categoryId"
-              className="w-100"
-              onChange={handleChange}
               value={values.categoryId}
+              onChange={handleChange}
+              style={{ padding: "0 10px", fontSize: "14px", borderRadius: 0 }}
+              className="form-control"
             >
-              {arrProjectCategory.map((item, index) => {
+              {arrProjectCategory?.map((item, index) => {
                 return (
-                  <Option value={item.id} key={index}>
+                  <option key={index} value={item.id}>
                     {item.projectCategoryName}
-                  </Option>
+                  </option>
                 );
               })}
-            </Select>
+            </select>
           </div>
         </div>
         <div className="col-12">
@@ -122,7 +123,11 @@ const EditProjectFormik = withFormik({
   },
   validationSchema: Yup.object().shape({}),
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(values);
+    console.log("values:", values);
+    props.dispatch({
+      type: "UPDATE_PROJECT_SAGA",
+      projectUpdate: values,
+    });
   },
   displayName: "CreateProjectFormik",
 })(FormEditProject);
