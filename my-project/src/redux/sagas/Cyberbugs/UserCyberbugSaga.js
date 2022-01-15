@@ -71,3 +71,25 @@ function* getUserSearch(action) {
 export function* theoDoiGetUserSearch() {
   yield takeLatest("GET_USER_API_SEARCH", getUserSearch);
 }
+
+//Quản lý các action saga
+function* addUserProjectSaga(action) {
+  console.log("action :", action.userProject);
+  try {
+    const { data, status } = yield call(() =>
+      userService.addUserProject(action.userProject)
+    );
+    if (status === STATUS_CODE.SUCCESS) {
+      console.log("Add thanh cong");
+    }
+    yield put({
+      type: "GET_ALL_PROJECT_MANAGE",
+    });
+  } catch (err) {
+    console.log(err.response.data);
+  }
+}
+
+export function* theoDoiAddUserProject() {
+  yield takeLatest("ADD_USER_PROJECT_API", addUserProjectSaga);
+}

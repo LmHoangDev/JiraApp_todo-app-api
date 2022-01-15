@@ -86,7 +86,7 @@ function* deleteProjectSaga(action) {
       notificationCyberbugs("error", "Delete project fail !");
     }
     yield put({
-      type: "GET_LIST_PROJECT_SAGA",
+      type: "GET_ALL_PROJECT_MANAGE",
     });
 
     yield put({

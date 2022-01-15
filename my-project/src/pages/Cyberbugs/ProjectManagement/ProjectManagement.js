@@ -10,6 +10,7 @@ export default function ProjectManagement() {
   const projectList = useSelector(
     (state) => state.ProjectManageReducer.projectList
   );
+  const [value, setValue] = useState("");
   const { userSearch } = useSelector(
     (state) => state.UserLoginCyberBugsReducer
   );
@@ -106,11 +107,28 @@ export default function ProjectManagement() {
                 return (
                   <AutoComplete
                     options={userSearch?.map((user, index) => {
-                      return { label: user.name, value: user.userId };
+                      return {
+                        label: user.name,
+                        value: user.userId.toString(),
+                      };
                     })}
-                    onSelect={(value, option) => {
-                      console.log("userId", value);
-                      console.log("option", option);
+                    value={value}
+                    onChange={(text) => {
+                      setValue(text);
+                    }}
+                    onSelect={(valueText, option) => {
+                      //set giá trị của hộp thọa = option.label
+                      setValue(option.label);
+                      //Gọi api gửi về backend
+                      dispatch({
+                        type: "ADD_USER_PROJECT_API",
+                        userProject: {
+                          projectId: record.id,
+                          userId: valueText,
+                        },
+                      });
+                      console.log("projectId", record.id);
+                      console.log("userId", valueText);
                     }}
                     style={{ width: "100%" }}
                     onSearch={(value) => {
