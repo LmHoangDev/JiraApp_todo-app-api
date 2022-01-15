@@ -4,7 +4,7 @@ import { FormOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_ALL_PROJECT_MANAGE } from "../../../redux/constants/Cyberbugs/Cyberbugs";
 import FormEditProject from "../../../components/Forms/FormEditProject/FormEditProject";
-
+import { Popconfirm, message } from "antd";
 export default function ProjectManagement() {
   //Lấy dữ liệu từ reducer về component
   const projectList = useSelector(
@@ -65,18 +65,6 @@ export default function ProjectManagement() {
         return projectname1 > projectname2 ? 1 : -1;
       },
     },
-    // {
-    //     title: 'description',
-    //     dataIndex: 'description',
-    //     key: 'description',
-    //     render: (text, record, index) => {
-    //         let contentJSX = ReactHtmlParser(text);
-
-    //         return <div>
-    //             {contentJSX}
-    //         </div>
-    //     }
-    // },
     {
       title: "Category",
       dataIndex: "categoryName",
@@ -123,9 +111,18 @@ export default function ProjectManagement() {
             >
               <FormOutlined style={{ fontSize: 17 }} />
             </button>
-            <button className="btn btn-danger">
-              <DeleteOutlined style={{ fontSize: 17 }} />
-            </button>
+            <Popconfirm
+              title="Are you sure to delete this project?"
+              onConfirm={() => {
+                dispatch({ type: "DELETE_PROJECT_SAGA", idProject: record.id });
+              }}
+              okText="Yes"
+              cancelText="No"
+            >
+              <button className="btn btn-danger">
+                <DeleteOutlined style={{ fontSize: 17 }} />
+              </button>
+            </Popconfirm>
           </div>
         );
       },

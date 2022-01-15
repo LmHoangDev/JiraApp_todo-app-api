@@ -22,5 +22,7 @@ export function* rootSaga() {
     ProjectSaga.theoDoiCreateProjectSaga(),
     ProjectManageSaga.theoDoiGetAllProject(),
     ProjectManageSaga.theoDoiUpdateProject(),
+    // ProjectManageSaga.theoDoiDeleteProject(),
+    ProjectManageSaga.theoDoiDeleteProject(),
   ]);
 }
