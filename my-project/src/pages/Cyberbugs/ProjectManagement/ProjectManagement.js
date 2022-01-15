@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Tag, Space, Button } from "antd";
+import { Table, Tag, Space, Button, Avatar, Popover, AutoComplete } from "antd";
 import { FormOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_ALL_PROJECT_MANAGE } from "../../../redux/constants/Cyberbugs/Cyberbugs";
@@ -10,6 +10,10 @@ export default function ProjectManagement() {
   const projectList = useSelector(
     (state) => state.ProjectManageReducer.projectList
   );
+  const { userSearch } = useSelector(
+    (state) => state.UserLoginCyberBugsReducer
+  );
+  console.log(userSearch);
   //Sử dụng useDispatch để gọi action
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -84,6 +88,49 @@ export default function ProjectManagement() {
       },
     },
     {
+      title: "members",
+      key: "members",
+      render: (text, record, index) => {
+        return (
+          <div>
+            {record.members?.slice(0, 3).map((member, index) => {
+              return <Avatar key={index} src={member.avatar} />;
+            })}
+
+            {record.members?.length > 3 ? <Avatar>...</Avatar> : ""}
+
+            <Popover
+              placement="rightTop"
+              title={"Add user"}
+              content={() => {
+                return (
+                  <AutoComplete
+                    options={userSearch?.map((user, index) => {
+                      return { label: user.name, value: user.userId };
+                    })}
+                    onSelect={(value, option) => {
+                      console.log("userId", value);
+                      console.log("option", option);
+                    }}
+                    style={{ width: "100%" }}
+                    onSearch={(value) => {
+                      dispatch({
+                        type: "GET_USER_API_SEARCH",
+                        keyWord: value,
+                      });
+                    }}
+                  />
+                );
+              }}
+              trigger="click"
+            >
+              <Button style={{ borderRadius: "50%" }}>+</Button>
+            </Popover>
+          </div>
+        );
+      },
+    },
+    {
       title: "Action",
       dataIndex: "",
       key: "x",
@@ -91,7 +138,7 @@ export default function ProjectManagement() {
         return (
           <div>
             <button
-              className="btn mr-2 btn-primary"
+              className="btn mr-2 btn-primary py-0 px-6"
               onClick={() => {
                 const action = {
                   type: "OPEN_FORM_EDIT_PROJECT",
@@ -109,7 +156,7 @@ export default function ProjectManagement() {
                 dispatch(actionEditProject);
               }}
             >
-              <FormOutlined style={{ fontSize: 17 }} />
+              <FormOutlined style={{ fontSize: 16 }} />
             </button>
             <Popconfirm
               title="Are you sure to delete this project?"
@@ -119,8 +166,8 @@ export default function ProjectManagement() {
               okText="Yes"
               cancelText="No"
             >
-              <button className="btn btn-danger">
-                <DeleteOutlined style={{ fontSize: 17 }} />
+              <button className="btn btn-danger py-0 px-6">
+                <DeleteOutlined style={{ fontSize: 16 }} />
               </button>
             </Popconfirm>
           </div>

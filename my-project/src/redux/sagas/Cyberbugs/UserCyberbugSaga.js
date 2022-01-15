@@ -1,6 +1,11 @@
 import { call, delay, put, takeLatest } from "redux-saga/effects";
 import { cyberbugsService } from "../../../services/CyberbugService";
-import { TOKEN, USER_LOGIN } from "../../../util/constants/settingSystem";
+import { userService } from "../../../services/UserService";
+import {
+  STATUS_CODE,
+  TOKEN,
+  USER_LOGIN,
+} from "../../../util/constants/settingSystem";
 import { history } from "../../../util/history";
 import { USER_SIGNIN_API, USLOGIN } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
@@ -44,4 +49,25 @@ function* signInSaga(action) {
 
 export function* theoDoiSignin() {
   yield takeLatest(USER_SIGNIN_API, signInSaga);
+}
+
+function* getUserSearch(action) {
+  //Gọi api
+  try {
+    const { data, status } = yield call(() =>
+      userService.getUserSearch(action.keyWord)
+    );
+    if (status === STATUS_CODE.SUCCESS) {
+      console.log(data.content);
+      yield put({
+        type: "GET_USER_SEARCH",
+        lstUserSearch: data.content,
+      });
+    }
+  } catch (err) {
+    console.log(err.response.data);
+  }
+}
+export function* theoDoiGetUserSearch() {
+  yield takeLatest("GET_USER_API_SEARCH", getUserSearch);
 }
