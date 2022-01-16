@@ -26,5 +26,6 @@ export function* rootSaga() {
     ProjectManageSaga.theoDoiDeleteProject(),
     Cyberbug.theoDoiGetUserSearch(),
     Cyberbug.theoDoiAddUserProject(),
+    Cyberbug.theoDoiRemoveUserProject(),
   ]);
 }

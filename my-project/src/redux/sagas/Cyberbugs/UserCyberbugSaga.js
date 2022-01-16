@@ -37,7 +37,7 @@ function* signInSaga(action) {
 
     // let history = yield select(state=> state.HistoryReducer.history)
 
-    history.push("/home");
+    history.push("/cyberbug");
   } catch (err) {
     console.log(err.response.data);
   }
@@ -52,6 +52,7 @@ export function* theoDoiSignin() {
 }
 
 function* getUserSearch(action) {
+  console.log(action.keyWord);
   //Gọi api
   try {
     const { data, status } = yield call(() =>
@@ -92,4 +93,26 @@ function* addUserProjectSaga(action) {
 
 export function* theoDoiAddUserProject() {
   yield takeLatest("ADD_USER_PROJECT_API", addUserProjectSaga);
+}
+
+//delete userproject
+function* removeUserProjectSaga(action) {
+  console.log("action :", action.userProject);
+  try {
+    const { data, status } = yield call(() =>
+      userService.deleteUserFromProject(action.userProject)
+    );
+    if (status === STATUS_CODE.SUCCESS) {
+      console.log("Delete success");
+    }
+    yield put({
+      type: "GET_ALL_PROJECT_MANAGE",
+    });
+  } catch (err) {
+    console.log(err.response.data);
+  }
+}
+
+export function* theoDoiRemoveUserProject() {
+  yield takeLatest("REMOVE_USER_PROJECT_API", removeUserProjectSaga);
 }
