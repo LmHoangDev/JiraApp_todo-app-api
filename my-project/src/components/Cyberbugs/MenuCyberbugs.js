@@ -29,7 +29,7 @@ export default function MenuCyberbugs() {
       </div>
       <div className="control">
         <div>
-          <NavLink to="cyberbug" activeClassName="font-weight-bold">
+          <NavLink to="/" activeClassName="font-weight-bold">
             <i className="fa fa-credit-card" />
             <span>Cyber Board</span>
           </NavLink>
