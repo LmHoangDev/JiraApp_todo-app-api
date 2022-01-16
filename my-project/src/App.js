@@ -41,6 +41,12 @@ function App() {
           exact
           Component={ProjectManagement}
         />
+        <CyberbugTemplate
+          exact
+          path="/projectdetail/:projectId"
+          Component={indexCyberbug}
+        />
+        <CyberbugTemplate exact path="/" Component={ProjectManagement} />
         <Route path="/todo" exact component={TodoListSaga} />
         <Route path="*" component={NotFound} />
       </Switch>

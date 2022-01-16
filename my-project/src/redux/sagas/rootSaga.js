@@ -17,15 +17,19 @@ export function* rootSaga() {
     TodoListSaga.theoDoiActionDelTask(),
     TodoListSaga.theoDoiActionRejectTask(),
     TodoListSaga.theoDoiActionCheckTask(),
+    ///
     Cyberbug.theoDoiSignin(),
-    ProJectCategory.theoDoigetAllProjectCategory(),
-    ProjectSaga.theoDoiCreateProjectSaga(),
-    ProjectManageSaga.theoDoiGetAllProject(),
-    ProjectManageSaga.theoDoiUpdateProject(),
-    // ProjectManageSaga.theoDoiDeleteProject(),
-    ProjectManageSaga.theoDoiDeleteProject(),
     Cyberbug.theoDoiGetUserSearch(),
     Cyberbug.theoDoiAddUserProject(),
     Cyberbug.theoDoiRemoveUserProject(),
+    ///
+    ProJectCategory.theoDoigetAllProjectCategory(),
+    //
+    ProjectSaga.theoDoiCreateProjectSaga(),
+    ProjectSaga.theoDoiGetProjectDetail(),
+    ///
+    ProjectManageSaga.theoDoiGetAllProject(),
+    ProjectManageSaga.theoDoiUpdateProject(),
+    ProjectManageSaga.theoDoiDeleteProject(),
   ]);
 }

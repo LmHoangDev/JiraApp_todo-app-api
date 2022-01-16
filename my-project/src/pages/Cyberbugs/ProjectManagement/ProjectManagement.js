@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { GET_ALL_PROJECT_MANAGE } from "../../../redux/constants/Cyberbugs/Cyberbugs";
 import FormEditProject from "../../../components/Forms/FormEditProject/FormEditProject";
 import { Popconfirm, message } from "antd";
+import { NavLink } from "react-router-dom";
 export default function ProjectManagement() {
   //Lấy dữ liệu từ reducer về component
   const projectList = useSelector(
@@ -65,6 +66,9 @@ export default function ProjectManagement() {
       title: "Project Name",
       dataIndex: "projectName",
       key: "projectName",
+      render: (text, record, index) => {
+        return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>;
+      },
       sorter: (item1, item2) => {
         let projectname1 = item1.projectName?.trim().toLowerCase();
         let projectname2 = item2.projectName?.trim().toLowerCase();

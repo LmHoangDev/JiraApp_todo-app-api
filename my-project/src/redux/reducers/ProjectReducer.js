@@ -6,6 +6,7 @@ const initialState = {
     description: "string",
     categoryId: "2",
   },
+  projectDetail: {},
 };
 
 export default (state = initialState, action) => {
@@ -14,6 +15,10 @@ export default (state = initialState, action) => {
       console.log(action);
       state.projectEdit = action.projectEditModel;
       return { ...state };
+    case "PUT_PROJECT_DETAIL": {
+      state.projectDetail = action.projectDetail;
+      return { ...state };
+    }
     default:
       return state;
   }
