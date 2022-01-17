@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
+import { useDispatch } from "react-redux";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -10,6 +11,7 @@ import {
   SearchOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import FormCreateTask from "../Forms/FormCreateTask/FormCreateTask";
 
 const { Header, Sider, Content } = Layout;
 export default function SidebarCyberbugs() {
@@ -21,6 +23,7 @@ export default function SidebarCyberbugs() {
       collapsed: !state.collapsed,
     });
   };
+  const dispatch = useDispatch();
   return (
     <div className="h-100">
       <Sider
@@ -41,6 +44,13 @@ export default function SidebarCyberbugs() {
             className="mt-2 mb-2"
             key="1"
             icon={<PlusOutlined />}
+            onClick={() => {
+              dispatch({
+                type: "OPEN_FORM_CREATE_TASK",
+                Component: <FormCreateTask />,
+                title: "Create task",
+              });
+            }}
           >
             <span className="mb-2">Create issue</span>
           </Menu.Item>

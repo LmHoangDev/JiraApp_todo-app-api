@@ -3,9 +3,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function DrawerCyberbugs() {
-  const { visible, ComponentContentDrawer, callBackSubmit } = useSelector(
-    (state) => state.DrawerCyberbugReducer
-  );
+  const { visible, ComponentContentDrawer, callBackSubmit, title } =
+    useSelector((state) => state.DrawerCyberbugReducer);
   const dispatch = useDispatch();
   const showDrawer = () => {
     dispatch({ type: "OPEN_DRAWER" });
@@ -18,7 +17,7 @@ export default function DrawerCyberbugs() {
     <>
       {/* <button onClick={showDrawer}>showdrawer</button> */}
       <Drawer
-        title="Edit Project"
+        title={title}
         width={500}
         onClose={onClose}
         visible={visible}
