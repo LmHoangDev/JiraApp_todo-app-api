@@ -143,9 +143,8 @@ export default function ProjectManagement() {
                                       });
                                     }}
                                     className="btn btn-danger"
-                                    style={{ borderRadius: "50%" }}
                                   >
-                                    X
+                                    <DeleteOutlined />
                                   </button>
                                 </td>
                               </tr>

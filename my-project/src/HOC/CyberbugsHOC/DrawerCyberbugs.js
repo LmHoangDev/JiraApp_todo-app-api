@@ -18,7 +18,7 @@ export default function DrawerCyberbugs() {
       {/* <button onClick={showDrawer}>showdrawer</button> */}
       <Drawer
         title={title}
-        width={500}
+        width={700}
         onClose={onClose}
         visible={visible}
         bodyStyle={{ paddingBottom: 80 }}
