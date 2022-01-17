@@ -1,6 +1,9 @@
 import { Editor } from "@tinymce/tinymce-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Select, Radio, Slider } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { GET_ALL_TASK_TYPE_SAGA } from "../../../redux/constants/Cyberbugs/TaskTypeConstants";
+import { GET_ALL_PRIORITY_SAGA } from "../../../redux/constants/Cyberbugs/PriorityConstants";
 const { Option } = Select;
 
 const children = [];
@@ -21,6 +24,23 @@ export default function FormCreateTask(props) {
     console.log(`Selected: ${value}`);
   }
 
+  const { projectList } = useSelector((state) => state.ProjectManageReducer);
+  const { arrTaskType } = useSelector((state) => state.TaskTypeReducer);
+  const { arrPriority } = useSelector((state) => state.PriorityReducer);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: "GET_ALL_PROJECT_MANAGE",
+    });
+    dispatch({
+      type: GET_ALL_TASK_TYPE_SAGA,
+    });
+    dispatch({
+      type: GET_ALL_PRIORITY_SAGA,
+    });
+  }, []);
+
   const children = [];
   return (
     <div className="container">
@@ -31,8 +51,13 @@ export default function FormCreateTask(props) {
           className="form-control"
           style={{ fontSize: "14px" }}
         >
-          <option value="54">Project A</option>
-          <option value="55">Project A</option>
+          {projectList.map((item, index) => {
+            return (
+              <option key={index} value={item.id}>
+                {item.projectName}
+              </option>
+            );
+          })}
         </select>
       </div>
       <div className="form-group">
@@ -44,8 +69,13 @@ export default function FormCreateTask(props) {
               className="form-control"
               style={{ fontSize: "14px" }}
             >
-              <option>High</option>
-              <option>Low</option>
+              {arrPriority.map((item, index) => {
+                return (
+                  <option key={index} value={item.priorityId}>
+                    {item.priority}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="col-6">
@@ -55,8 +85,13 @@ export default function FormCreateTask(props) {
               name="typeId"
               style={{ fontSize: "14px" }}
             >
-              <option>New Task</option>
-              <option>Bugs</option>
+              {arrTaskType.map((taskType, index) => {
+                return (
+                  <option key={index} value={taskType.id}>
+                    {taskType.taskType}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>

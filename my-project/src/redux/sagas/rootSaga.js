@@ -10,6 +10,8 @@ import * as Cyberbug from "./Cyberbugs/UserCyberbugSaga";
 import * as ProJectCategory from "./Cyberbugs/ProjectCategorySaga";
 import * as ProjectSaga from "./Cyberbugs/ProjectSaga";
 import * as ProjectManageSaga from "./Cyberbugs/ProjectManageSaga";
+import * as TaskTypeCyberbug from "./Cyberbugs/TaskTypeCyberbug";
+import * as PrioritySaga from "./Cyberbugs/PrioritySaga";
 export function* rootSaga() {
   yield all([
     TodoListSaga.theoDoiActionSaga(),
@@ -31,5 +33,10 @@ export function* rootSaga() {
     ProjectManageSaga.theoDoiGetAllProject(),
     ProjectManageSaga.theoDoiUpdateProject(),
     ProjectManageSaga.theoDoiDeleteProject(),
+
+    //
+    TaskTypeCyberbug.theoDoiGetAllTaskTypeSaga(),
+    //
+    PrioritySaga.theoDoiGetAllPriority(),
   ]);
 }
