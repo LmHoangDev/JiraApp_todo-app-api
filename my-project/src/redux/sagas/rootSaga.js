@@ -13,6 +13,7 @@ import * as ProjectManageSaga from "./Cyberbugs/ProjectManageSaga";
 import * as TaskTypeCyberbug from "./Cyberbugs/TaskTypeCyberbug";
 import * as PrioritySaga from "./Cyberbugs/PrioritySaga";
 import * as TaskSaga from "./Cyberbugs/TaskSaga";
+import * as StatusSaga from "./Cyberbugs/StatusSaga";
 export function* rootSaga() {
   yield all([
     TodoListSaga.theoDoiActionSaga(),
@@ -41,5 +42,6 @@ export function* rootSaga() {
     PrioritySaga.theoDoiGetAllPriority(),
 
     TaskSaga.theoDoiGetCreateTaskSaga(),
+    StatusSaga.theoDoiGetAllStatusSaga(),
   ]);
 }
