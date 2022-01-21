@@ -99,7 +99,11 @@ export default function ModalCyberBugs() {
                         />
                       </div>
                       <div className="input-comment">
-                        <input type="text" placeholder="Add a comment ..." />
+                        <input
+                          type="text"
+                          style={{ outLine: "none", border: "1px solid #333" }}
+                          placeholder="Add a comment ..."
+                        />
                         <p>
                           <span style={{ fontWeight: 500, color: "gray" }}>
                             Protip:

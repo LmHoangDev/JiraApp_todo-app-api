@@ -6,6 +6,7 @@ import { GET_ALL_TASK_TYPE_SAGA } from "../../../redux/constants/Cyberbugs/TaskT
 import { GET_ALL_PRIORITY_SAGA } from "../../../redux/constants/Cyberbugs/PriorityConstants";
 import { withFormik } from "formik";
 import { GET_ALL_STATUS_SAGA } from "../../../redux/constants/Cyberbugs/StatusConstants";
+import { GET_USER_BY_PROJECT_ID_SAGA } from "../../../redux/constants/Cyberbugs/UserConstants";
 
 const { Option } = Select;
 
@@ -42,7 +43,7 @@ function FormCreateTask(props) {
   );
   const { arrStatus } = useSelector((state) => state.StatusReducer);
   //Hàm biến đổi options cho thẻ select
-
+  console.log("arrUser", arrUser);
   const userOptions = arrUser.map((item, index) => {
     return { value: item.userId, label: item.name };
   });
@@ -61,6 +62,8 @@ function FormCreateTask(props) {
     dispatch({
       type: GET_ALL_STATUS_SAGA,
     });
+    //Đưa hàm handle submit lên drawer reducer để cập nhật lại sự kiện cho nút submitt
+    dispatch({ type: "SET_SUBMIT_CREATE_TASK", submitFunction: handleSubmit });
   }, []);
 
   const children = [];
@@ -72,7 +75,17 @@ function FormCreateTask(props) {
           name="projectId"
           className="form-control"
           style={{ fontSize: "14px" }}
-          onChange={handleChange}
+          onChange={(e) => {
+            //dispatch giá trị làm thay đổi arrUser
+            let { value } = e.target;
+            dispatch({
+              type: GET_USER_BY_PROJECT_ID_SAGA,
+              idProject: value,
+            });
+            console.log("Value", value);
+            //Cập nhật giá trị cho project Id
+            setFieldValue("projectId", e.target.value);
+          }}
         >
           {projectList.map((item, index) => {
             return (
@@ -266,7 +279,6 @@ function FormCreateTask(props) {
           style={{ overFlow: "scroll" }}
           onEditorChange={handleEditorChange}
         />
-        <button type="submit">submit</button>
       </div>
     </form>
   );
