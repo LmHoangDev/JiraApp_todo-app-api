@@ -36,15 +36,16 @@ function FormCreateTask(props) {
   const { projectList } = useSelector((state) => state.ProjectManageReducer);
   const { arrTaskType } = useSelector((state) => state.TaskTypeReducer);
   const { arrPriority } = useSelector((state) => state.PriorityReducer);
+  const { arrUser } = useSelector((state) => state.UserLoginCyberBugsReducer);
   const { userSearch } = useSelector(
     (state) => state.UserLoginCyberBugsReducer
   );
   const { arrStatus } = useSelector((state) => state.StatusReducer);
   //Hàm biến đổi options cho thẻ select
-  const userOptions = userSearch.map((item, index) => {
+
+  const userOptions = arrUser.map((item, index) => {
     return { value: item.userId, label: item.name };
   });
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({

@@ -26,6 +26,7 @@ export function* rootSaga() {
     Cyberbug.theoDoiGetUserSearch(),
     Cyberbug.theoDoiAddUserProject(),
     Cyberbug.theoDoiRemoveUserProject(),
+    Cyberbug.theoDoiGetUserByProjectIdSaga(),
     ///
     ProJectCategory.theoDoigetAllProjectCategory(),
     //

@@ -8,6 +8,10 @@ import {
 } from "../../../util/constants/settingSystem";
 import { history } from "../../../util/history";
 import { USER_SIGNIN_API, USLOGIN } from "../../constants/Cyberbugs/Cyberbugs";
+import {
+  GET_USER_BY_PROJECT_ID,
+  GET_USER_BY_PROJECT_ID_SAGA,
+} from "../../constants/Cyberbugs/UserConstants";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 
 //Quản lý các action saga
@@ -115,4 +119,36 @@ function* removeUserProjectSaga(action) {
 
 export function* theoDoiRemoveUserProject() {
   yield takeLatest("REMOVE_USER_PROJECT_API", removeUserProjectSaga);
+}
+
+function* getUserByProjectIdSaga(action) {
+  const { idProject } = action;
+  console.log("action", idProject);
+
+  try {
+    const { data, status } = yield call(() =>
+      userService.getUserByProjectId(idProject)
+    );
+    console.log("checkdata", data);
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: GET_USER_BY_PROJECT_ID,
+        arrUser: data.content,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    console.log(err.response?.data);
+    if (err.response?.data.statusCode === STATUS_CODE.NOT_FOUND) {
+      yield put({
+        type: GET_USER_BY_PROJECT_ID,
+        arrUser: [],
+      });
+    }
+  }
+}
+
+export function* theoDoiGetUserByProjectIdSaga() {
+  yield takeLatest(GET_USER_BY_PROJECT_ID_SAGA, getUserByProjectIdSaga);
 }
