@@ -1,21 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { GET_ALL_PRIORITY_SAGA } from "../../../redux/constants/Cyberbugs/PriorityConstants";
 import { GET_ALL_STATUS_SAGA } from "../../../redux/constants/Cyberbugs/StatusConstants";
-import { UPDATE_STATUS_TASK_SAGA } from "../../../redux/constants/Cyberbugs/TaskConstants";
+import {
+  UPDATE_STATUS_TASK_SAGA,
+  CHANGE_TASK_MODAL,
+} from "../../../redux/constants/Cyberbugs/TaskConstants";
+import { GET_ALL_TASK_TYPE_SAGA } from "../../../redux/constants/Cyberbugs/TaskTypeConstants";
+import { Editor } from "@tinymce/tinymce-react";
 
 export default function ModalCyberBugs() {
   const { taskDetailModal } = useSelector((state) => state.TaskReducer);
   const { arrStatus } = useSelector((state) => state.StatusReducer);
   const { arrPriority } = useSelector((state) => state.PriorityReducer);
+  const { arrTaskType } = useSelector((state) => state.TaskTypeReducer);
+
+  const [visibleEditor, setVisibleEditor] = useState(false);
+  const [historyContent, setHistoryContent] = useState(
+    taskDetailModal.description
+  );
+  const [content, setContent] = useState(taskDetailModal.description);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: GET_ALL_STATUS_SAGA });
     dispatch({ type: GET_ALL_PRIORITY_SAGA });
+    dispatch({ type: GET_ALL_TASK_TYPE_SAGA });
   }, []);
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({
+      type: CHANGE_TASK_MODAL,
+      name,
+      value,
+    });
+  };
   console.log("taskDetailModal", taskDetailModal);
   const renderTimeTracking = () => {
     const { timeTrackingSpent, timeTrackingRemaining } = taskDetailModal;
@@ -24,24 +44,44 @@ export default function ModalCyberBugs() {
     const percent = Math.round((Number(timeTrackingSpent) / max) * 100);
 
     return (
-      <div style={{ display: "flex" }}>
-        <i className="fa fa-clock" />
-        <div style={{ width: "100%" }}>
-          <div className="progress">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{ width: `${percent}%` }}
-              aria-valuenow={Number(timeTrackingSpent)}
-              aria-valuemin={Number(timeTrackingRemaining)}
-              aria-valuemax={max}
+      <div>
+        <div style={{ display: "flex" }}>
+          <i className="fa fa-clock" />
+          <div style={{ width: "100%" }}>
+            <div className="progress">
+              <div
+                className="progress-bar"
+                role="progressbar"
+                style={{ width: `${percent}%` }}
+                aria-valuenow={Number(timeTrackingSpent)}
+                aria-valuemin={Number(timeTrackingRemaining)}
+                aria-valuemax={max}
+              />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <p className="logged">{Number(timeTrackingSpent)}h logged</p>
+              <p className="estimate-time">
+                {Number(timeTrackingRemaining)}h remaining
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6">
+            <input
+              className="form-control"
+              name="timeTrackingSpent"
+              onChange={handleChange}
+              style={{ fontSize: "14px" }}
             />
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <p className="logged">{Number(timeTrackingRemaining)}h logged</p>
-            <p className="estimate-time">
-              {Number(timeTrackingRemaining)}h remaining
-            </p>
+          <div className="col-6">
+            <input
+              className="form-control"
+              name="timeTrackingRemaining"
+              onChange={handleChange}
+              style={{ fontSize: "14px" }}
+            />
           </div>
         </div>
       </div>
@@ -60,6 +100,16 @@ export default function ModalCyberBugs() {
         <div className="modal-content">
           <div className="modal-header">
             <div className="task-title">
+              <select
+                name="typeId"
+                value={taskDetailModal.typeId}
+                onChange={handleChange}
+                className="mr-2"
+              >
+                {arrTaskType.map((tp, index) => {
+                  return <option value={tp.id}>{tp.taskType}</option>;
+                })}
+              </select>
               <i className="fa fa-bookmark" />
               <span>{taskDetailModal.taskName}</span>
             </div>
@@ -92,11 +142,73 @@ export default function ModalCyberBugs() {
                 <div className="col-8">
                   <div className="description">
                     <p>Description</p>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: taskDetailModal.description,
-                      }}
-                    />
+                    <div>
+                      {visibleEditor ? (
+                        <div>
+                          <Editor
+                            name="description"
+                            initialValue={taskDetailModal.description}
+                            init={{
+                              selector: "textarea#myTextArea",
+                              height: 300,
+                              menubar: false,
+                              plugins: [
+                                "advlist autolink lists link image charmap print preview anchor",
+                                "searchreplace visualblocks code fullscreen",
+                                "insertdatetime media table paste code help wordcount",
+                              ],
+                              toolbar:
+                                "undo redo | formatselect | bold italic backcolor | \
+                            alignleft aligncenter alignright alignjustify | \
+                            bullist numlist outdent indent | removeformat | help",
+                            }}
+                            onEditorChange={(content, editor) => {
+                              setContent(content);
+                            }}
+                            style={{ overFlow: "scroll" }}
+                          />
+                          <button
+                            className="btn btn-primary m-2"
+                            onClick={() => {
+                              dispatch({
+                                type: CHANGE_TASK_MODAL,
+                                name: "description",
+                                value: content,
+                              });
+                              setVisibleEditor(false);
+                            }}
+                            style={{ fontSize: "14px" }}
+                          >
+                            Save
+                          </button>
+                          <button
+                            className="btn btn-default m-2"
+                            style={{ fontSize: "14px" }}
+                            onClick={() => {
+                              dispatch({
+                                type: CHANGE_TASK_MODAL,
+                                name: "description",
+                                value: historyContent,
+                              });
+                              setVisibleEditor(false);
+                            }}
+                          >
+                            Close
+                          </button>
+                        </div>
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: taskDetailModal.description,
+                          }}
+                          onClick={() => {
+                            setHistoryContent(taskDetailModal.description);
+                            setVisibleEditor(!visibleEditor);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        />
+                      )}
+                    </div>
                   </div>
 
                   <div className="comment">
@@ -172,15 +284,17 @@ export default function ModalCyberBugs() {
                     <select
                       className="custom-select"
                       value={taskDetailModal.statusId}
+                      name="statusId"
                       onChange={(e) => {
-                        dispatch({
-                          type: UPDATE_STATUS_TASK_SAGA,
-                          taskUpdateStatus: {
-                            taskId: taskDetailModal.taskId,
-                            statusId: e.target.value,
-                            projectId: taskDetailModal.projectId,
-                          },
-                        });
+                        handleChange(e);
+                        // dispatch({
+                        //   type: UPDATE_STATUS_TASK_SAGA,
+                        //   taskUpdateStatus: {
+                        //     taskId: taskDetailModal.taskId,
+                        //     statusId: e.target.value,
+                        //     projectId: taskDetailModal.projectId,
+                        //   },
+                        // });
                       }}
                     >
                       {arrStatus.map((status, index) => {
@@ -242,7 +356,8 @@ export default function ModalCyberBugs() {
                       className="form-control"
                       value={taskDetailModal.priorityTask?.priorityId}
                       style={{ fontSize: "14px" }}
-                      onChange={(e) => {}}
+                      name="priorityId"
+                      onChange={handleChange}
                     >
                       {arrPriority.map((item, index) => {
                         return (
@@ -259,6 +374,8 @@ export default function ModalCyberBugs() {
                       type="text"
                       className="estimate-hours"
                       value={taskDetailModal.originalEstimate}
+                      name="originalEstimate"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="time-tracking">
