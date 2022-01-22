@@ -44,5 +44,6 @@ export function* rootSaga() {
 
     TaskSaga.theoDoiGetCreateTaskSaga(),
     StatusSaga.theoDoiGetAllStatusSaga(),
+    TaskSaga.theoDoiGetTaskDetailSaga(),
   ]);
 }
