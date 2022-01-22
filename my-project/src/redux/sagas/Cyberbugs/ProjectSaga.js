@@ -57,7 +57,7 @@ function* getProjectDetailSaga(action) {
     });
   } catch (err) {
     console.log("404 not found !");
-    history.push("/projectmanage");
+    //history.push("/projectmanage");
   }
 
   yield put({
