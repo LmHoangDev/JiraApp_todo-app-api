@@ -9,6 +9,7 @@ import DrawerCyberbugs from "./HOC/CyberbugsHOC/DrawerCyberbugs";
 import CreateProject from "./pages/Cyberbugs/CreateProject/CreateProject";
 import LoginWithFormMik from "./pages/Cyberbugs/LoginCyberbugs/LoginCyberbugs";
 import ProjectManagement from "./pages/Cyberbugs/ProjectManagement/ProjectManagement";
+import RegisterCyberbugs from "./pages/Cyberbugs/RegisterCyberbugs/RegisterCyberbugs";
 import DragDrop from "./pages/DemoDragDrop/DragDrop";
 import Home from "./pages/Home/Home";
 import indexCyberbug from "./redux/sagas/Cyberbugs/indexCyberbug";
@@ -50,6 +51,7 @@ function App() {
         <CyberbugTemplate exact path="/" Component={ProjectManagement} />
         <Route path="/todo" exact component={TodoListSaga} />
         <Route path="/dragdrop" exact component={DragDrop} />
+        <Route path="/register" exact component={RegisterCyberbugs} />
         <Route path="*" component={NotFound} />
       </Switch>
       {/* <Loading />

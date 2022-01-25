@@ -1,7 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function HeaderMain(props) {
   const { projectDetail } = props;
+  const logOut = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("USER_LOGIN");
+  };
   return (
     <div className="header">
       <nav aria-label="breadcrumb">
@@ -14,6 +19,11 @@ export default function HeaderMain(props) {
             aria-current="page"
           >
             {projectDetail.projectName}
+          </li>
+          <li className="log-out ml-auto">
+            <NavLink to="/login" className="text-danger" onClick={logOut}>
+              Log out
+            </NavLink>
           </li>
         </ol>
       </nav>

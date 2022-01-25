@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { connect } from "react-redux";
 import "./LoginCyberbugs.css";
 import { signInCyberBugAction } from "../../../redux/actions/CyberBugAction";
+import { NavLink } from "react-router-dom";
 function LoginCyberbugs(props) {
   const { values, touched, errors, handleChange, handleSubmit } = props;
   console.log(props);
@@ -48,12 +49,11 @@ function LoginCyberbugs(props) {
                 {touched.password ? errors.password : ""}
               </div>
               <div className="form-group">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="d-block w-100"
-                >
+                <Button type="primary" htmlType="submit" className="mr-2">
                   LOGIN
+                </Button>
+                <Button type="primary" danger>
+                  <NavLink to="/register">REGISTER</NavLink>
                 </Button>
               </div>
               <div className="form-group d-flex justify-content-center">
