@@ -17,6 +17,11 @@ export default function Header() {
                 Todo Tasks
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/dragdrop">
+                Drag Drop
+              </NavLink>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
