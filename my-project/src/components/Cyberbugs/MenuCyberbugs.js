@@ -46,7 +46,7 @@ export default function MenuCyberbugs() {
             activeClassName="font-weight-bold"
             className="d-block"
           >
-            <i class="fas fa-tasks"></i>
+            <i className="fas fa-tasks"></i>
             <span>Projects</span>
           </NavLink>
         </div>
